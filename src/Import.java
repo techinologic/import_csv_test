@@ -9,6 +9,10 @@ class ParseCSVLineByLine {
     static int[][] y_arr = new int[64][16];
     static int tolerance = 350;
 
+    static int startingY;
+    static int startingX;
+
+
     static void setUpMyCSVArray() {
         myArray = new int[300][300];
         Scanner scanner;
@@ -167,6 +171,26 @@ class ParseCSVLineByLine {
         return (circleTopY-circleBottomY)/2;
     }
 
+    public static int getCircleThickness(int[][] array){
+        int r = 0;
+        int largestNum = 0;
+        int circleTopY = 0;
+        int circleBottomY = 0;
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if (array[i][j] > tolerance) {
+                    startingY = i;
+                    startingX = j;
+                    break;
+                }
+            }
+        }
+        for (int i = startingY; i < array.length; i++) {
+
+        }
+    }
+
     public static void main(String[] args) throws Exception {
 
         setUpMyCSVArray();
@@ -175,7 +199,7 @@ class ParseCSVLineByLine {
 
         //detectCircle(129,129,93, tolerance);
 
-        System.out.println(getRadius(myArray));
+        System.out.println("Radius: " + getRadius(myArray));
 
 
 
