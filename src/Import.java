@@ -12,6 +12,9 @@ class ParseCSVLineByLine {
     static int startingY;
     static int startingX;
 
+    static int endingY;
+    static int endingX;
+
 
     static void setUpMyCSVArray() {
         myArray = new int[300][300];
@@ -24,9 +27,9 @@ class ParseCSVLineByLine {
         String InputLine;
         double xnum = 0;
         String xfileLocation;
-        xfileLocation = "C:\\Users\\Paopao\\Desktop\\import_csv_test\\aas.csv";
+        xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/aas.csv";
 
-        System.out.println("Array Setup");
+        System.out.println("Array loaded.");
 
         try {
             //set up scanner
@@ -39,14 +42,12 @@ class ParseCSVLineByLine {
                     myArray[rowc][i] = Integer.parseInt(InArray[i]);
                 }
                 rowc++;
-                System.out.println();
             }
         } catch (Exception e) {
 
             System.out.println("Error! " + e);
         }
     }
-
 
 
     public static boolean detectCircle(int x0, int y0, int radius, int tolerance) {
@@ -62,29 +63,29 @@ class ParseCSVLineByLine {
 
         while (x >= y) {
 
-            if (myArray[(x0 + x)][(y0 + y)]>=tolerance){ //1
-                vote+=1;
+            if (myArray[(x0 + x)][(y0 + y)] >= tolerance) { //1
+                vote += 1;
             }
-            if (myArray[(x0 + y)][(y0 + x)]>=tolerance){ //2
-                vote+=1;
+            if (myArray[(x0 + y)][(y0 + x)] >= tolerance) { //2
+                vote += 1;
             }
-            if (myArray[(x0 - y)][(y0 + x)]>=tolerance){ //3
-                vote+=1;
+            if (myArray[(x0 - y)][(y0 + x)] >= tolerance) { //3
+                vote += 1;
             }
-            if (myArray[(x0 - x)][(y0 + y)]>=tolerance){ //4
-                vote+=1;
+            if (myArray[(x0 - x)][(y0 + y)] >= tolerance) { //4
+                vote += 1;
             }
-            if (myArray[(x0 - x)][(y0 - y)]>=tolerance){ //5
-                vote+=1;
+            if (myArray[(x0 - x)][(y0 - y)] >= tolerance) { //5
+                vote += 1;
             }
-            if (myArray[(x0 - y)][(y0 - x)]>=tolerance){ //6
-                vote+=1;
+            if (myArray[(x0 - y)][(y0 - x)] >= tolerance) { //6
+                vote += 1;
             }
-            if (myArray[(x0 + y)][(y0 - x)]>=tolerance){ //7
-                vote+=1;
+            if (myArray[(x0 + y)][(y0 - x)] >= tolerance) { //7
+                vote += 1;
             }
-            if (myArray[(x0 + x)][(y0 - y)]>=tolerance){ //8
-                vote+=1;
+            if (myArray[(x0 + x)][(y0 - y)] >= tolerance) { //8
+                vote += 1;
             }
 
             if (err <= 0) {
@@ -98,7 +99,7 @@ class ParseCSVLineByLine {
                 err += (-radius << 1) + dx;
             }
 
-            counter+=1;
+            counter += 1;
         }
 
 //        if (vote>=300) {
@@ -117,21 +118,13 @@ class ParseCSVLineByLine {
 
     }
 
-    public static void traverseArrayDiagonally(int[][] ar) {
-        for (int i = 0; i < ar.length; i++) {
-            if (ar[i][i]>=350) {
-                System.out.println(ar[i][i] + " " + i);
-            }
-        }
-    }
-
     public static void printValues(int[][] ar) {
         int counter = 0;
         for (int i = 0; i < myArray.length; i++) {
             System.out.println();
             for (int j = 0; j < myArray.length; j++) {
-                if (myArray[i][j]>=tolerance) {
-                    if (detectCircle(129,129,93, tolerance)) {
+                if (myArray[i][j] >= tolerance) {
+                    if (detectCircle(129, 129, 93, tolerance)) {
                         System.out.print(myArray[i][j] + " ");
                     }
                     //detectCircle(129,129,93);
@@ -144,23 +137,21 @@ class ParseCSVLineByLine {
 
     public static int getRadius(int[][] array) {
         int r = 0;
-        int largestNum = 0;
         int circleTopY = 0;
         int circleBottomY = 0;
 
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length; j++) {
-                if (array[i][j] > tolerance) {
+                if (array[i][j] >= tolerance) {
                     circleTopY = i;
-                    break;
                 }
             }
         }
 
-        for (int i = array.length-1; i > 0; i--) {
+        for (int i = array.length - 1; i > 0; i--) {
             for (int j = 0; j < array.length; j++) {
-                if (array[i][j] > tolerance) {
-                    circleBottomY = i+1;
+                if (array[i][j] >= tolerance) {
+                    circleBottomY = i + 1;
                     break;
                 }
             }
@@ -168,34 +159,51 @@ class ParseCSVLineByLine {
 
         System.out.println("first row of circle: " + circleTopY);
         System.out.println("last row of circle: " + circleBottomY);
-        return (circleTopY-circleBottomY)/2;
+        return (circleTopY - circleBottomY) / 2;
     }
 
-    public static int getCircleThickness(int[][] array){
-        int r = 0;
-        int largestNum = 0;
-        int circleTopY = 0;
-        int circleBottomY = 0;
-        int thickness = 0;
+    public static int getCircleThickness(int[][] array) {
+
+        int start_x = startingX;
+        int start_y = startingY;
+
+        while(array[start_y][start_x]>=tolerance) {
+                start_y += 1;
+        }
+        System.out.println("Ending X, Y: " +start_y + ", " + start_x);
+
+        while (array[start_y][start_x]<=tolerance) {
+
+        }
+        return start_y-startingY;
+    }
+
+
+    public static int getTopY(int[][] array) {
 
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array.length; j++) {
-                if (array[i][j] > tolerance) {
+                if (array[i][j] >= tolerance) {
                     startingY = i;
                     startingX = j;
-                    break;
+                    System.out.println("Starting X, Y: " + startingY + ", " + startingX);
+                    return -1;
                 }
             }
         }
-        for (int i = startingY; i < array.length; i++) {
-            for (int j = startingX; j < array.length; j++) {
-                if (array[j][startingX]>=tolerance) {
-                    thickness+=1;
-                }
-            }
-        }
-        return thickness;
+        return -1;
     }
+    public static int getBottom(int[][] array) {
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if (array[i][j] >= tolerance) return i;
+
+            }
+        }
+        return -1;
+    }
+
 
     public static void main(String[] args) throws Exception {
 
@@ -205,13 +213,13 @@ class ParseCSVLineByLine {
 
         //detectCircle(129,129,93, tolerance);
 
-        System.out.println("Radius: " + getRadius(myArray));
+        //System.out.println("Radius: " + getRadius(myArray));
+        //System.out.println("Circle thickness: " + getCircleThickness(myArray));
+
+        //testArray(myArray);
+
+        getTopY(myArray);
         System.out.println("Circle thickness: " + getCircleThickness(myArray));
-
-
-
-
-
     }
 
 }
