@@ -27,8 +27,8 @@ class ParseCSVLineByLine {
         String InputLine;
         double xnum = 0;
         String xfileLocation;
-        //xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\aas.csv";
-        xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/aas.csv";
+        xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\aas.csv";
+        //xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/aas.csv";
 
         System.out.println("Array loaded.");
 
@@ -212,6 +212,20 @@ class ParseCSVLineByLine {
         double xRad =  Math.toRadians(45);
         double yRad =  Math.toRadians(45);
         //while (radius != maxRadius) {
+
+        int x45 = (int) (126 + (radius * Math.cos(45/(180/Math.PI))));
+        int y45 = (int) (133 + (radius * Math.sin(45/(180/Math.PI))));
+
+        double x135 = 126 + (radius * Math.cos(135/(180/Math.PI)));
+        double y135 = 133 + (radius * Math.sin(135/(180/Math.PI)));
+
+        double x225 = 126 + (radius * Math.cos(225/(180/Math.PI)));
+        double y225 = 133 + (radius * Math.sin(225/(180/Math.PI)));
+
+        double x315 = 126 + (radius * Math.cos(315/(180/Math.PI)));
+        double y315 = 133 + (radius * Math.sin(315/(180/Math.PI)));
+
+
         for (int i = radius + 1; i < myArray.length - radius - 1; i++) {
             for (int j = radius + 1; j < myArray.length - radius - 1; j++) {
                 if ((myArray[i + radius][j] > tolerance)
@@ -229,30 +243,23 @@ class ParseCSVLineByLine {
 
                         && (myArray[i][j - radius] > tolerance)
                         && (myArray[i][j - radius + 1] > tolerance)
-                        && (myArray[i][j - radius - 1] > tolerance)) {
+                        && (myArray[i][j - radius - 1] > tolerance)
+                        && (myArray[x45][y45] > tolerance)
+                        && (myArray[(int) x135][(int) y135] > tolerance)
+                        && (myArray[(int) x225][(int) y225] > tolerance)
+                        && (myArray[(int) x315][(int) y315] > tolerance)) {
 
 
 
                     count += 1;
                     System.out.println((i) + " " + j);
 
-                    double x45 = 126 + (radius * Math.cos(45/(180/Math.PI)));
-                    double y45 = 133 + (radius * Math.sin(45/(180/Math.PI)));
-
-                    double x135 = 126 + (radius * Math.cos(135/(180/Math.PI)));
-                    double y135 = 133 + (radius * Math.sin(135/(180/Math.PI)));
-
-                    double x225 = 126 + (radius * Math.cos(225/(180/Math.PI)));
-                    double y225 = 133 + (radius * Math.sin(225/(180/Math.PI)));
-
-                    double x315 = 126 + (radius * Math.cos(315/(180/Math.PI)));
-                    double y315 = 133 + (radius * Math.sin(315/(180/Math.PI)));
 
 
-                    System.out.println("x45: " + x45 + " " + "y45: " + y45);
-                    System.out.println("x135: " + x135 + " " + "y135: " + y135);
-                    System.out.println("x225: " + x225 + " " + "y225: " + y225);
-                    System.out.println("x315: " + x315 + " " + "y315: " + y315);
+//                    System.out.println("x45: " + x45 + " " + "y45: " + y45);
+//                    System.out.println("x135: " + x135 + " " + "y135: " + y135);
+//                    System.out.println("x225: " + x225 + " " + "y225: " + y225);
+//                    System.out.println("x315: " + x315 + " " + "y315: " + y315);
 
 
 
@@ -284,7 +291,7 @@ class ParseCSVLineByLine {
         //testArray(myArray);
 
         getTopY(myArray);
-        System.out.println("Circles found: " + searchCircle(92, 96));
+        System.out.println("Circles found: " + searchCircle(91, 96));
         System.out.println("Test completed");
 
     }
