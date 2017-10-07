@@ -7,7 +7,7 @@ class ParseCSVLineByLine {
     static int[][] myArray;
     static int[][] x_arr = new int[64][16];
     static int[][] y_arr = new int[64][16];
-    static int tolerance = 350;
+    static int tolerance = 400;
 
     static int startingY;
     static int startingX;
@@ -27,7 +27,7 @@ class ParseCSVLineByLine {
         String InputLine;
         double xnum = 0;
         String xfileLocation;
-        xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/aas.csv";
+        xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\aas.csv";
 
         System.out.println("Array loaded.");
 
@@ -57,9 +57,7 @@ class ParseCSVLineByLine {
         int dy = 1;
         int err = dx - (radius << 1);
 
-        int counter = 0;
         int vote = 0;
-        int circleCount = 0;
 
         while (x >= y) {
 
@@ -99,7 +97,7 @@ class ParseCSVLineByLine {
                 err += (-radius << 1) + dx;
             }
 
-            counter += 1;
+            //counter += 1;
         }
 
 //        if (vote>=300) {
@@ -117,6 +115,7 @@ class ParseCSVLineByLine {
         }
 
     }
+
 
     public static void printValues(int[][] ar) {
         int counter = 0;
@@ -167,15 +166,15 @@ class ParseCSVLineByLine {
         int start_x = startingX;
         int start_y = startingY;
 
-        while(array[start_y][start_x]>=tolerance) {
-                start_y += 1;
+        while (array[start_y][start_x] >= tolerance) {
+            start_y += 1;
         }
-        System.out.println("Ending X, Y: " +start_y + ", " + start_x);
+        System.out.println("Ending X, Y: " + start_y + ", " + start_x);
 
-        while (array[start_y][start_x]<=tolerance) {
+        while (array[start_y][start_x] <= tolerance) {
 
         }
-        return start_y-startingY;
+        return start_y - startingY;
     }
 
 
@@ -193,6 +192,7 @@ class ParseCSVLineByLine {
         }
         return -1;
     }
+
     public static int getBottom(int[][] array) {
 
         for (int i = 0; i < array.length; i++) {
@@ -202,6 +202,41 @@ class ParseCSVLineByLine {
             }
         }
         return -1;
+    }
+
+    public static int searchCircle(int r, int maxRadius) {
+        int count = 0;
+        int radius = r;
+        //while (radius != maxRadius) {
+        for (int i = radius+1; i < myArray.length - radius-1; i++) {
+            for (int j = radius+1; j < myArray.length - radius-1; j++) {
+                if ((myArray[i + radius][j] > tolerance)
+                        && (myArray[i + radius + 1][j] > tolerance)
+                        && (myArray[i + radius - 1][j] > tolerance)
+
+                        && (myArray[i - radius][j] > tolerance)
+                        && (myArray[i - radius + 1][j] > tolerance)
+                        && (myArray[i - radius - 1][j] > tolerance)
+
+                        && (myArray[i][j + radius] > tolerance)
+                        && (myArray[i][j + radius + 1] > tolerance)
+                        && (myArray[i][j + radius - 1] > tolerance)
+
+
+                        && (myArray[i][j - radius] > tolerance)
+                        && (myArray[i][j - radius + 1] > tolerance)
+                        && (myArray[i][j - radius - 1] > tolerance)) {
+                    {
+                        count += 1;
+                        System.out.println(i + " " + j);
+                    }
+                }
+            }
+            //radius++;
+            //}
+        }
+        System.out.println("radius: " + radius);
+        return count;
     }
 
 
@@ -219,7 +254,8 @@ class ParseCSVLineByLine {
         //testArray(myArray);
 
         getTopY(myArray);
-        System.out.println("Circle thickness: " + getCircleThickness(myArray));
+        System.out.println("Circles found: " + searchCircle(92, 96));
+        System.out.println("Test completed");
     }
 
 }
