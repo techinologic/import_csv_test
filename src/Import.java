@@ -17,7 +17,7 @@ class ParseCSVLineByLine {
 
 
     static void setUpMyCSVArray() {
-        myArray = new int[300][300];
+        myArray = new int[2160][2560];
         Scanner scanner;
 
         int rowc = 0;
@@ -27,8 +27,8 @@ class ParseCSVLineByLine {
         String InputLine;
         double xnum = 0;
         String xfileLocation;
-        //xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\CSV_25mm.csv";
-        //xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/aas.csv";
+        xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\aas2.csv";
+        //xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/25mm.csv";
 
         System.out.println("Array loaded.");
 
@@ -255,8 +255,14 @@ class ParseCSVLineByLine {
 
                     circleFoundY = 1;
                     circleFoundX = 1;
-                    sameCircle = 1;
+
+                    count+=1;
+
+
+
                 }
+
+
 //                    System.out.println("x45: " + x45 + " " + "y45: " + y45);
 //                    System.out.println("x135: " + x135 + " " + "y135: " + y135);
 //                    System.out.println("x225: " + x225 + " " + "y225: " + y225);
@@ -265,7 +271,6 @@ class ParseCSVLineByLine {
             }
             circleFoundX = 0;
         }
-        count += 1;
 
         System.out.println("radius: " + radius);
         return count;
