@@ -3,18 +3,18 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 class ParseCSVLineByLine {
-    static String xStrPath;
     static int[][] myArray;
 
     static int tolerance = 400;
+    static int thickness = 2;
 
     static void setUpMyCSVArray() {
-        myArray = new int[300][300];
+        myArray = new int[600][600];
         Scanner scanner;
 
         int rowc = 0;
         String xfileLocation;
-        xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\aas.csv";
+        xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\aas6.csv";
         //xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/25mm.csv";
 
         System.out.println("Array loaded.");
@@ -124,7 +124,6 @@ class ParseCSVLineByLine {
     public static int searchCircle(int r, int maxRadius) {
         int count = 0;
         int radius = r;
-        int thickness = 2;
 
         int counter = 0;
 
@@ -174,9 +173,9 @@ class ParseCSVLineByLine {
                         && (myArray[i][j - radius - thickness] > tolerance)
 
                         && (myArray[x45][y45] > tolerance)
-//                        && (myArray[x120][y120] > tolerance)
+                        && (myArray[x120][y120] > tolerance)
                         && (myArray[x135][y135] > tolerance)
-//                        && (myArray[x150][y150] > tolerance)
+                        && (myArray[x150][y150] > tolerance)
                         && (myArray[x225][y225] > tolerance)
                         && (myArray[x315][y315] > tolerance))
                 { // if statement open
