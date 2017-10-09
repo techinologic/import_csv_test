@@ -1,6 +1,9 @@
+package com.findcircles;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
+
 
 class ParseCSVLineByLine {
     static int[][] myArray;
@@ -14,8 +17,8 @@ class ParseCSVLineByLine {
 
         int rowc = 0;
         String xfileLocation;
-        xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\aas6.csv";
-        //xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/25mm.csv";
+        xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\src\\com\\findcircles\\aas6.csv";
+        //xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/aas6.csv";
 
         System.out.println("Array loaded.");
         System.out.println("Length: " + myArray.length);
@@ -31,8 +34,6 @@ class ParseCSVLineByLine {
                     myArray[rowc][i] = Integer.parseInt(InArray[i]);
                 }
                 rowc++;
-                System.out.println(InArray.length);
-
             }
 
         } catch (Exception e) {
