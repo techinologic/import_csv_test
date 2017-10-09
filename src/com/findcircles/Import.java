@@ -9,19 +9,19 @@ class ParseCSVLineByLine {
     static int[][] myArray;
 
     static int tolerance = 400;
-    static int thickness = 2;
+    static int thickness = 3;
 
     static void setUpMyCSVArray() {
-        myArray = new int[600][600];
+        myArray = new int[2160][2560];
         Scanner scanner;
 
         int rowc = 0;
         String xfileLocation;
-        xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\src\\com\\findcircles\\aas6.csv";
-        //xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/aas6.csv";
+        //xfileLocation = "C:\\Users\\Paopao\\IdeaProjects\\import_csv_test\\src\\com\\findcircles\\aas6.csv";
+        xfileLocation = "/Users/Paolo/IdeaProjects/import_csv_test/csv_25mm.csv";
 
         System.out.println("Array loaded.");
-        System.out.println("Length: " + myArray.length);
+        System.out.println("Size: " + myArray.length + " " + myArray[myArray.length-1].length);
 
         try {
             //set up scanner
@@ -38,11 +38,11 @@ class ParseCSVLineByLine {
 
         } catch (Exception e) {
 
-            System.out.println("Error! " + e);
+            System.out.println("Error loading CSV. " + e);
         }
     }
 
-    public static boolean detectCircle(int x0, int y0, int radius, int tolerance) {
+    public static void detectCircle(int x0, int y0, int radius, int tolerance) {
         int x = radius - 1;
         int y = 0;
         int dx = 1;
@@ -88,33 +88,9 @@ class ParseCSVLineByLine {
                 err += (-radius << 1) + dx;
             }
 
-            //counter += 1;
         }
 
 
-        if (vote < 1) {
-            return false;
-        } else {
-            return true;
-        }
-
-    }
-
-    public static void printValues(int[][] ar) {
-        int counter = 0;
-        for (int i = 0; i < myArray.length; i++) {
-            System.out.println();
-            for (int j = 0; j < myArray.length; j++) {
-                if (myArray[i][j] >= tolerance) {
-                    if (detectCircle(129, 129, 93, tolerance)) {
-                        System.out.print(myArray[i][j] + " ");
-                    }
-                    //detectCircle(129,129,93);
-                } else {
-                    System.out.print("    ");
-                }
-            }
-        }
     }
 
 
@@ -179,10 +155,6 @@ class ParseCSVLineByLine {
                 } // if close
 
 
-//                    System.out.println("x45: " + x45 + " " + "y45: " + y45);
-//                    System.out.println("x135: " + x135 + " " + "y135: " + y135);
-//                    System.out.println("x225: " + x225 + " " + "y225: " + y225);
-//                    System.out.println("x315: " + x315 + " " + "y315: " + y315);
             }
         }
 
@@ -199,35 +171,6 @@ class ParseCSVLineByLine {
 
         System.out.println("\nCircles found: " + searchCircle(91, 96));
         System.out.println("\nSearch completed");
-
-        int testRadius = 9;
-        int xTest = 256;
-        int yTest = 216;
-
-        double x45 = Math.round(xTest + (testRadius * Math.cos(45/(180/Math.PI))));
-        double y45 = Math.round(yTest + (testRadius * Math.sin(45/(180/Math.PI))));
-
-        double x120 = (xTest + (testRadius * Math.cos(120/(180/Math.PI))));
-        double y120 = (yTest + (testRadius * Math.sin(120/(180/Math.PI))));
-        double x150 = (xTest + (testRadius * Math.cos(150/(180/Math.PI))));
-        double y150 = (yTest + (testRadius * Math.sin(150/(180/Math.PI))));
-
-        double x135 = Math.round(xTest + (testRadius * Math.cos(135/(180/Math.PI))));
-        double y135 = Math.round(yTest + (testRadius * Math.sin(135/(180/Math.PI))));
-
-        double x225 = Math.round(xTest + (testRadius * Math.cos(225/(180/Math.PI))));
-        double y225 = Math.round(yTest + (testRadius * Math.sin(225/(180/Math.PI))));
-
-        double x315 = Math.round(xTest + (testRadius * Math.cos(315/(180/Math.PI))));
-        double y315 = Math.round(yTest + (testRadius * Math.sin(315/(180/Math.PI))));
-
-
-        System.out.println(x45 + " " + y45);
-        //System.out.println(x120 + " " + y120);
-        //System.out.println(x150 + " " + y150);
-        System.out.println(x135 + " " + y135);
-        System.out.println(x225 + " " + y225);
-        System.out.println(x315 + " " + y315);
 
 
     }
