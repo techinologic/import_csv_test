@@ -31,7 +31,10 @@ class ParseCSVLineByLine {
                     myArray[rowc][i] = Integer.parseInt(InArray[i]);
                 }
                 rowc++;
+                System.out.println(InArray.length);
+
             }
+
         } catch (Exception e) {
 
             System.out.println("Error! " + e);
