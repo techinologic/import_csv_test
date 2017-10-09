@@ -90,13 +90,6 @@ class ParseCSVLineByLine {
             //counter += 1;
         }
 
-//        if (vote>=300) {
-//            circleCount+=1;
-//        }
-//        System.out.println();
-//        System.out.println("Counter: "+counter);
-//        System.out.println("Votes here: " + vote + "/" + counter*8);
-//        System.out.println("Circle Count: "+circleCount);
 
         if (vote < 1) {
             return false;
@@ -129,11 +122,6 @@ class ParseCSVLineByLine {
         int radius = r;
 
         int counter = 0;
-
-
-
-        //while (radius != maxRadius) {
-
 
         for (int i = radius + 2; i < myArray.length - radius - 1; i++) { //x
             for (int j = radius + 2; j < myArray[myArray.length-1].length - radius - 1; j++) { //y
